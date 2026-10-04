@@ -57,3 +57,13 @@ class ItemPedido(models.Model):
     variacao = models.ForeignKey(Variacao, on_delete=models.RESTRICT)
     preco_no_momento = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.PositiveIntegerField()
+
+class Perfil(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
+    morada = models.CharField(max_length=255, blank=True, null=True)
+    cidade = models.CharField(max_length=100, blank=True, null=True)
+    cep = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return f"Perfil de {self.user.username}"
